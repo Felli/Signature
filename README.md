@@ -4,8 +4,7 @@
 - You **must** install the adjustd Likes plugin together with this plugin to let it work correctly!
 - Works together or individually with the Likes plugin. You can enable them both, or either one.
  
- ### Installation
-
+### Installation
 
 Browse to your esoTalk plugin directory:
 ```
@@ -20,7 +19,7 @@ git clone git@github.com:esoTalk-plugins/Signature.git Signature
 Backup the current Likes plugin and clone the adjusted Likes plugin repo into the plugin directory as well:
 ```
 mv Likes Likes.bak
-git clone git@github.com:esoTalk-plugins/Likese.git Likes
+git clone git@github.com:esoTalk-plugins/Likes.git Likes
 ```
 
 Chown the Signature and Likes plugin folder to the right web user:
