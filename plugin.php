@@ -16,16 +16,15 @@ ET::$pluginInfo["Signature"] = array(
 
 class ETPlugin_Signature extends ETPlugin {
 
-        function handler_settingsController_initGeneral($sender, $form)
-        {
+	function handler_settingsController_initGeneral($sender, $form)
+	{
 		$form->addSection("signature", T("Signature"), array("after" => "privacy"));
-	        $form->setValue("signature", ET::$session->preference("signature"));
-               	$form->addField("signature", "signature", array($this, "fieldSignature"), array($this, "saveSignature"));
+		$form->setValue("signature", ET::$session->preference("signature"));
+		$form->addField("signature", "signature", array($this, "fieldSignature"), array($this, "saveSignature"));
+	}
 
-        }
-
-        function fieldSignature($form)
-       	{
+	function fieldSignature($form)
+	{
 		if (!(ET::$session->preference("signature") == NULL))
 		{
 			return $form->input("signature", "text")." <small>(".T("Max charaters:")." 110)</small><br /><br /><small>".ET::$session->preference("signature")."</small>";
@@ -34,12 +33,12 @@ class ETPlugin_Signature extends ETPlugin {
 		{
 			return $form->input("signature", "text")." <small>(".T("Max charaters:")." 110)</small><br /><br /><small>-</small>";
 		}
-       	}
+	}
 
 	public function saveSignature($form, $key, &$preferences)
 	{
-       		$signature = $form->getValue($key);
-        	$preferences["signature"] = $signature;
+		$signature = $form->getValue($key);
+		$preferences["signature"] = $signature;
 	}
 
 	public function handler_conversationController_renderBefore($sender)
@@ -59,13 +58,13 @@ class ETPlugin_Signature extends ETPlugin {
 
 			if ($liked)
 			{
-               			$signature = "<p class='signature likes liked'>".$post["preferences"]["signature"];
-               			$formatted["body"] .= $signature;
+				$signature = "<p class='signature likes liked'>".$post["preferences"]["signature"];
+				$formatted["body"] .= $signature;
 			}
 			else
 			{
-                               	$signature = "<p class='signature likes'>".$post["preferences"]["signature"];
-                               	$formatted["body"] .= $signature;
+				$signature = "<p class='signature likes'>".$post["preferences"]["signature"];
+				$formatted["body"] .= $signature;
 			}
 		}
 		else
