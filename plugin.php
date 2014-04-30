@@ -6,7 +6,7 @@ if (!defined("IN_ESOTALK")) exit;
 ET::$pluginInfo["Signature"] = array(
 	"name" => "Signature",
 	"description" => "Let users add their signature to posts.",
-	"version" => "1.0.0",
+	"version" => "1.1.0",
 	"author" => "Tristan van Bokkem",
 	"authorEmail" => "tristanvanbokkem@gmail.com",
 	"authorURL" => "http://www.bitcoinclub.nl",
@@ -43,7 +43,8 @@ class ETPlugin_Signature extends ETPlugin {
 
 	public function handler_conversationController_renderBefore($sender)
 	{
-		$sender->addCSSFile($this->getResource("signature.css"));
+		$sender->addCSSFile($this->resource("signature.css"));
+		$sender->addJSFile($this->resource("signature.js"));
 	}
 
 	public function handler_conversationController_formatPostForTemplate($sender, &$formatted, $post, $conversation)
@@ -54,22 +55,12 @@ class ETPlugin_Signature extends ETPlugin {
 		// if so we need to output the signature HTML a bit different.
 		if (in_array("Likes", C("esoTalk.enabledPlugins")))
 		{
-			$liked = array_key_exists(ET::$session->userId, $post["likes"]);
-
-			if ($liked)
-			{
-				$signature = "<p class='signature likes liked'>".$post["preferences"]["signature"];
-				$formatted["body"] .= $signature;
-			}
-			else
-			{
-				$signature = "<p class='signature likes'>".$post["preferences"]["signature"];
-				$formatted["body"] .= $signature;
-			}
+			$signature = "<span class='signature'>".$post["preferences"]["signature"]."</span>";
+			$formatted["body"] .= $signature;
 		}
 		else
 		{
-			$signature = "<p class='signature'>".$post["preferences"]["signature"]."</p>";
+			$signature = "<p class='signature-no-likes'>".$post["preferences"]["signature"]."</p>";
 			$formatted["body"] .= $signature;
 		}
 	}

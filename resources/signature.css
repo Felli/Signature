@@ -1,11 +1,14 @@
 .signature {
+    padding-top:7px 0 1px 12px;
+    float:left;
+    font-size:11px;
+    color:#999;
+}
+.signature-no-likes {
     height:17px;
     border-top:1px solid #eee;
     font-size:11px;
-    padding:5px 12px;
-    margin:0 -11px 1px;
+    padding:5px 0 5px 12px;
+    margin:2px -15px 0 -15px;
     color:#999;
-}
-.right {
-    float:right;
 }
