@@ -6,7 +6,7 @@ if (!defined("IN_ESOTALK")) exit;
 ET::$pluginInfo["Signature"] = array(
 	"name" => "Signature",
 	"description" => "Let users add their signature to posts.",
-	"version" => "1.1.0",
+	"version" => "1.1.1",
 	"author" => "Tristan van Bokkem",
 	"authorEmail" => "tristanvanbokkem@gmail.com",
 	"authorURL" => "http://www.bitcoinclub.nl",
@@ -27,11 +27,11 @@ class ETPlugin_Signature extends ETPlugin {
 	{
 		if (!(ET::$session->preference("signature") == NULL))
 		{
-			return $form->input("signature", "text")." <small>(".T("Max charaters:")." 110)</small><br /><br /><small>".ET::$session->preference("signature")."</small>";
+			return $form->input("signature", "text")." <small>(".T("Max charaters:")." ".C("plugin.Signature.characters").")</small><br /><br /><small>".ET::$session->preference("signature")."</small>";
 		}
 		else
 		{
-			return $form->input("signature", "text")." <small>(".T("Max charaters:")." 110)</small><br /><br /><small>-</small>";
+			return $form->input("signature", "text")." <small>(".T("Max charaters:")." ".C("plugin.Signature.characters").")</small><br /><br /><small>-</small>";
 		}
 	}
 
@@ -55,11 +55,39 @@ class ETPlugin_Signature extends ETPlugin {
 		// if so we need to output the signature HTML a bit different.
 		if (in_array("Likes", C("esoTalk.enabledPlugins")))
 		{
-			addToArray($formatted["footer"], "<p class='signature'>".$post["preferences"]["signature"]."</p>", 0);
+			$signature = $post["preferences"]["signature"];
+			addToArray($formatted["footer"], "<p class='signature'>".substr($signature,0,C("plugin.Signature.characters"))."</p>", 0);
 		}
 		else
 		{
-			addToArray($formatted["footer"], "<p class='signature-no-likes'>".$post["preferences"]["signature"]."</p>", 0);
+			$signature = $post["preferences"]["signature"];
+			addToArray($formatted["footer"], "<p class='signature-no-likes'>".substr($signature,0,C("plugin.Signature.characters"))."</p>", 0);
 		}
+	}
+
+	public function settings($sender)
+	{
+		// Set up the settings form.
+		$form = ETFactory::make("form");
+		$form->action = URL("admin/plugins/settings/Signature");
+
+		// Set the values for the sitemap options.
+		$form->setValue("characters", C("plugin.Signature.characters", "110"));
+
+		// If the form was submitted...
+		if ($form->validPostBack()) {
+
+			// Construct an array of config options to write.
+			$config = array();
+			$config["plugin.Signature.characters"] = $form->getValue("characters");
+
+			// Write the config file.
+			ET::writeConfig($config);
+
+			$sender->redirect(URL("admin/plugins"));
+		}
+
+		$sender->data("SignatureSettingsForm", $form);
+		return $this->view("settings");
 	}
 }
