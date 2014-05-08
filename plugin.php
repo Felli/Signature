@@ -55,13 +55,11 @@ class ETPlugin_Signature extends ETPlugin {
 		// if so we need to output the signature HTML a bit different.
 		if (in_array("Likes", C("esoTalk.enabledPlugins")))
 		{
-			$signature = "<span class='signature'>".$post["preferences"]["signature"]."</span>";
-			$formatted["body"] .= $signature;
+			addToArray($formatted["footer"], "<p class='signature'>".$post["preferences"]["signature"]."</p>", 0);
 		}
 		else
 		{
-			$signature = "<p class='signature-no-likes'>".$post["preferences"]["signature"]."</p>";
-			$formatted["body"] .= $signature;
+			addToArray($formatted["footer"], "<p class='signature-no-likes'>".$post["preferences"]["signature"]."</p>", 0);
 		}
 	}
 }
