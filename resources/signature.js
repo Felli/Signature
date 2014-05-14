@@ -1,7 +1,19 @@
 $(function() {
     if ($("p.likes").length) {
-    	$("p.likes").css({'height': '17px'});
-        $(".like-button, .like-members, .like-separator").css({'float': 'right'});
-        $("p.likes").before($("span.signature"));
+        $("p.likes").css({'border': '0'});
+        $('p.likes').each(
+            function(){
+                $(this).insertBefore($(this).closest('.postFooter'));
+            });
     }
 });
+
+$(document).ajaxComplete(function(){
+    if ($("p.likes").length) {
+        $("p.likes").css({'border': '0'});
+        $('p.likes').each(
+            function(){
+                $(this).insertBefore($(this).closest('.postFooter'));
+            });
+    }
+})
