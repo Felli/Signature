@@ -29,6 +29,8 @@ And lastly, edit your signature in your profile settings page :smile:
 Add the following definitions to your translation file (or create a seperate definitions.Signature.php file):
 
 ```
-$definitions["Signature"] = "Signature";
+$definitions["Characters"] = "Characters";
+$definitions["Enter the amount of signature characters allowed."] = "Enter the amount of signature characters allowed.";
 $definitions["Max characters:"] = "Max characters:";
+$definitions["Signature"] = "Signature";
 ```
