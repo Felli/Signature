@@ -18,7 +18,7 @@ class ETPlugin_Signature extends ETPlugin {
 
 	function setup()
 	{
-		ET::writeConfig(array("plugin.Signature.characters" => "110"));
+		ET::writeConfig(array("plugin.Signature.characters" => "150"));
 		return true;
 	}
 
@@ -78,7 +78,7 @@ class ETPlugin_Signature extends ETPlugin {
 		$form->action = URL("admin/plugins/settings/Signature");
 
 		// Set the values for the sitemap options.
-		$form->setValue("characters", C("plugin.Signature.characters", "110"));
+		$form->setValue("characters", C("plugin.Signature.characters", "150"));
 
 		// If the form was submitted...
 		if ($form->validPostBack()) {
