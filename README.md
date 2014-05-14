@@ -22,3 +22,13 @@ chown -R apache:apache Signature/
 
 Navigate to the esoTalk /admin/plugins page and activate the Signature plugin!
 And lastly, edit your signature in your profile settings page :smile:
+
+
+### Translation
+
+Add the following definitions to your translation file (or create a seperate definitions.Signature.php file):
+
+```
+$definitions["Signature"] = "Signature";
+$definitions["Max characters:"] = "Max characters:";
+```
