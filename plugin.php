@@ -16,6 +16,12 @@ ET::$pluginInfo["Signature"] = array(
 
 class ETPlugin_Signature extends ETPlugin {
 
+	function setup()
+	{
+		ET::writeConfig(array("plugin.Signature.characters" => "110"));
+		return true;
+	}
+
 	function handler_settingsController_initGeneral($sender, $form)
 	{
 		$form->addSection("signature", T("Signature"), array("after" => "privacy"));
