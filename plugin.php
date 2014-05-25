@@ -33,11 +33,11 @@ class ETPlugin_Signature extends ETPlugin {
 	{
 		if (!(ET::$session->preference("signature") == NULL))
 		{
-			return $form->input("signature", "text")." <small>(".T("Max charaters:")." ".C("plugin.Signature.characters").")</small><br /><br /><small>".ET::formatter()->init(ET::$session->preference("signature"))->format()->get()."</small>";
+			return $form->input("signature", "text")." <small>(".T("Max charaters:")." ".C("plugin.Signature.characters").", ".T("BBCode Allowed").")</small><br /><br /><small>".ET::formatter()->init(ET::$session->preference("signature"))->format()->get()."</small>";
 		}
 		else
 		{
-			return $form->input("signature", "text")." <small>(".T("Max charaters:")." ".C("plugin.Signature.characters").")</small><br /><br /><small>-</small>";
+			return $form->input("signature", "text")." <small>(".T("Max charaters:")." ".C("plugin.Signature.characters").", ".T("BBCode Allowed").")</small><br /><br /><small>-</small>";
 		}
 	}
 
