@@ -33,7 +33,7 @@ class ETPlugin_Signature extends ETPlugin {
 	{
 		if (!(ET::$session->preference("signature") == NULL))
 		{
-			return $form->input("signature", "text")." <small>(".T("Max charaters:")." ".C("plugin.Signature.characters").")</small><br /><br /><small>".ET::$session->preference("signature")."</small>";
+			return $form->input("signature", "text")." <small>(".T("Max charaters:")." ".C("plugin.Signature.characters").")</small><br /><br /><small>".ET::formatter()->init(ET::$session->preference("signature"))->format()->get()."</small>";
 		}
 		else
 		{
@@ -61,8 +61,8 @@ class ETPlugin_Signature extends ETPlugin {
 		// if so we need to output the signature HTML a bit different.
 		if (in_array("Likes", C("esoTalk.enabledPlugins")))
 		{
-			$signature = $post["preferences"]["signature"];
-			addToArray($formatted["footer"], "<p class='signature'>".substr($signature,0,C("plugin.Signature.characters"))."</p>", 0);
+			$signature = ET::formatter()->init($post["preferences"]["signature"])->format()->get();
+			addToArray($formatted["footer"], "<div class='signature'>".substr($signature,0,C("plugin.Signature.characters"))."</div>", 0);
 		}
 		else
 		{
