@@ -62,7 +62,14 @@ class ETPlugin_Signature extends ETPlugin {
 		if (in_array("Likes", C("esoTalk.enabledPlugins")))
 		{
 			$signature = ET::formatter()->init($post["preferences"]["signature"])->format()->get();
-			addToArray($formatted["footer"], "<div class='signature'>".substr($signature,0,C("plugin.Signature.characters"))."</div>", 0);
+			if ($signature)
+			{
+				addToArray($formatted["footer"], "<div class='signature'>".substr($signature,0,C("plugin.Signature.characters"))."</div>", 0);
+			}
+			else
+			{
+				return;
+			}
 		}
 		else
 		{
