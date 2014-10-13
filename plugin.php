@@ -6,7 +6,7 @@ if (!defined("IN_ESOTALK")) exit;
 ET::$pluginInfo["Signature"] = array(
 	"name" => "Signature",
 	"description" => "Let users add their signature to posts.",
-	"version" => "1.1.3",
+	"version" => "1.1.4",
 	"author" => "Tristan van Bokkem",
 	"authorEmail" => "tristanvanbokkem@gmail.com",
 	"authorURL" => "http://www.bitcoinclub.nl",
