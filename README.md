@@ -12,7 +12,7 @@ cd WEB_ROOT_DIR/addons/plugins/
 
 Clone the Signature plugin repo into the plugin directory:
 ```
-git clone git@github.com:esoTalk-plugins/Signature.git Signature
+git clone git@github.com:tvb/Signature.git Signature
 ```
 
 Chown the Signature plugin folder to the right web user:
