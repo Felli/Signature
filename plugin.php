@@ -51,8 +51,8 @@ class ETPlugin_Signature extends ETPlugin {
 
 	public function handler_conversationController_renderBefore($sender)
 	{
-		$sender->addCSSFile($this->resource("signature.css"));
-		$sender->addJSFile($this->resource("signature.js"));
+		$sender->addCSSFile($this->getResource("signature.css"));
+		$sender->addJSFile($this->getResource("signature.js"));
 	}
 
 	public function handler_conversationController_formatPostForTemplate($sender, &$formatted, $post, $conversation)
@@ -111,6 +111,6 @@ class ETPlugin_Signature extends ETPlugin {
 		}
 
 		$sender->data("SignatureSettingsForm", $form);
-		return $this->view("settings");
+		return $this->getView("settings");
 	}
 }
